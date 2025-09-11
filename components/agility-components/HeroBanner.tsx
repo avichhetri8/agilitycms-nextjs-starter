@@ -51,7 +51,7 @@ const HeroBanner = async ({ module, languageCode }: UnloadedModuleProps) => {
         )}
 
         <div className="absolute inset-x-0 bottom-0 flex justify-center p-8">
-          <Button text={fields.title} url={fields.url} />
+          <Button text={fields.title || "Learn More"} url={fields.url} />
         </div>
 
       </div>
