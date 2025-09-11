@@ -11,6 +11,7 @@ import {
 import Link from "next/link"
 import getAgilitySDK from "lib/cms/getAgilitySDK"
 import { getContentItem } from "lib/cms/getContentItem"
+import AgilityLink from "components/common/AgilityLink"
 
 interface ITextBlockWithImage {
   title: string
@@ -35,40 +36,6 @@ const TextBlockWithImage = async ({
     contentID: module.contentid,
     languageCode,
   })
-  // function to check whether or not the url is absolute
-  const isUrlAbsolute = (url: string) =>
-    url.indexOf("://") > 0 || url.indexOf("//") === 0
-
-  // function to generate proper link
-  const generateLink = (url: string, target: string, text: string) => {
-    // if relative link, use next/link
-    if (isUrlAbsolute(url) === false) {
-      return (
-        <Link
-          data-agility-field="primaryButton"
-          href={url}
-          title={text}
-          target={target}
-          className="inline-block mt-8 md:mt-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-500 hover:bg-primary-700 dark:bg-primary-400 dark:hover:bg-primary-600 focus:outline-hidden focus:border-primary-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
-        >
-          {text}
-        </Link>
-      )
-    } else {
-      // else use anchor tag
-      return (
-        <a
-          data-agility-field="primaryButton"
-          href={url}
-          title={text}
-          target={target}
-          className="inline-block mt-8 md:mt-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-500 hover:bg-primary-700 dark:bg-primary-400 dark:hover:bg-primary-600 focus:outline-hidden focus:border-primary-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
-        >
-          {text}
-        </a>
-      )
-    }
-  }
 
   //determine if the image should be high priority
   const priority = fields.highPriority === "true"
@@ -139,12 +106,15 @@ const TextBlockWithImage = async ({
             >
               {fields.content}
             </p>
-            {fields.primaryButton &&
-              generateLink(
-                fields.primaryButton.href,
-                fields.primaryButton.target,
-                fields.primaryButton.text
-              )}
+            {fields.primaryButton && (
+              <AgilityLink
+                url={fields.primaryButton.href}
+                target={fields.primaryButton.target}
+                text={fields.primaryButton.text}
+                data-agility-field="primaryButton"
+              />
+            )}
+
           </div>
         </div>
       </div>

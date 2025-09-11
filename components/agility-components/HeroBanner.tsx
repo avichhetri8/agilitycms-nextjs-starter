@@ -5,7 +5,7 @@ import {
   URLField,
 } from "@agility/nextjs"
 import { getContentItem } from "lib/cms/getContentItem"
-import Button from "./Button"
+import AgilityLink from "components/common/AgilityLink"
 
 interface IHeroBanner {
   title: string,
@@ -59,7 +59,7 @@ const HeroBanner = async ({ module, languageCode }: UnloadedModuleProps) => {
             >
               {fields.title}
             </h2>
-          <Button text={fields.url.text || "Learn More"} url={fields.url.href} target={fields.url.target}/>
+          <AgilityLink text={fields.url.text || "Learn More"} url={fields.url.href} target={fields.url.target} className="inline-block mt-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-500 hover:bg-primary-700 dark:bg-primary-400 dark:hover:bg-primary-600 focus:outline-hidden focus:border-primary-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"/>
         </div>
 
       </div>
