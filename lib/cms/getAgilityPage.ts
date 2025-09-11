@@ -17,7 +17,7 @@ export const getAgilityPage = async ({ params }: PageProps) => {
 
 	const awaitedParams = await params
 	const { isPreview: preview, locale } = await getAgilityContext()
-
+console.log("env", process.env.NODE_ENV	)
 	if (!awaitedParams.slug) awaitedParams.slug = [""]
 
 	const page = await getAgilityPageProps({

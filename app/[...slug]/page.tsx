@@ -19,7 +19,9 @@ export const dynamic = "force-static"
  * Generate the list of pages that we want to generate a build time.
  */
 export async function generateStaticParams() {
-	const isDevelopmentMode = process.env.NODE_ENV === "development";
+	const isDevelopmentMode = process.env.NODE_ENV === "development"; 
+	
+	console.log("isDevelopmentMode", isDevelopmentMode);
 	const isPreview = isDevelopmentMode;
 	const apiKey = isPreview ? process.env.AGILITY_API_PREVIEW_KEY : process.env.AGILITY_API_FETCH_KEY;
 	const agilityClient = agilitySDK.getApi({
