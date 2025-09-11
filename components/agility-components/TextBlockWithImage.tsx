@@ -35,7 +35,6 @@ const TextBlockWithImage = async ({
     contentID: module.contentid,
     languageCode,
   })
-
   // function to check whether or not the url is absolute
   const isUrlAbsolute = (url: string) =>
     url.indexOf("://") > 0 || url.indexOf("//") === 0
