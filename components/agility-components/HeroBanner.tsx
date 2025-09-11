@@ -2,13 +2,14 @@ import {
   AgilityPic,
   ImageField,
   UnloadedModuleProps,
+  URLField,
 } from "@agility/nextjs"
 import { getContentItem } from "lib/cms/getContentItem"
 import Button from "./Button"
 
 interface IHeroBanner {
   title: string,
-  url: string,
+  url: URLField,
   backgroundImage?: {
     galleryId: number
     media: Array<ImageField>
@@ -51,7 +52,14 @@ const HeroBanner = async ({ module, languageCode }: UnloadedModuleProps) => {
         )}
 
         <div className="absolute inset-x-0 bottom-0 flex justify-center p-8">
-          <Button text={fields.title || "Learn More"} url={fields.url} />
+          
+          <h2
+              data-agility-field="title"
+              className="font-display md:text-2xl mt-8 px-8 py-3 text-secondary-500 dark:text-secondary-200 tracking-wide text-center lg:leading-tight  md:text-left"
+            >
+              {fields.title}
+            </h2>
+          <Button text={fields.url.text || "Learn More"} url={fields.url.href} target={fields.url.target}/>
         </div>
 
       </div>
